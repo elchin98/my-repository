@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#"  th:action="@{'/edit/'+ ${payment.id}}"  th:object="${payment}" method="post" class="center">
+    <table class="center">
+        <tr>
+            <td>Amount</td>
+            <td><input type="text"  th:field="*{amount}" ></td>
+        </tr>
+
+        <tr>
+            <td>Description</td>
+            <td><input type="text" th:field="*{description}"></td>
+        </tr>
+
+        <tr>
+            <td>Currency</td>
+            <td><input type="text" th:field="*{currency}"></td>
+        </tr>
+        <table class="table table  striped">
+            <tr>
+                <th>Name</th>
+                <th>description</th>
+                <th>Form</th>
+            </tr>
+            <th:block th:each="payments, stat: ${payment.bankPayments}">
+                <tr>
+                    <td><input type="text" th:field="*{bankPayments[__${stat.index}__].name}"></td>
+                    <td><input  type="text" th:field="*{bankPayments[__${stat.index}__].description}"></td>
+                    <td><input type="text" th:field="*{bankPayments[__${stat.index}__].form}"></td>
+                </tr>
+
+            </th:block>
+        </table>
+
+    </table>
+
+    <div class="class">
+        <input class="btn btn-success" type="submit" value="update" >
+    </div>
+
+
+</form>
+
+</body>
+</html>
