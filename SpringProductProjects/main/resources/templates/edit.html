@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:type="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+    <style>
+        .center {
+            padding: 20px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+<form th:action="@{'/edit/' +${product.id}}" th:object="${product}" method="POST" class="center">
+    <table class="center">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+            <td th:if="${#fields.hasErrors('name')}"  th:errors="*{name}">Name error </td>
+        </tr>
+        <tr>
+            <td>Color</td>
+            <td><input type="text" th:field="*{price}"></td>
+            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price error</td>
+        </tr>
+        <tr>
+            <td>Size</td>
+            <td><input type="text" th:field="*{category}"></td>
+            <td th:if="${#fields.hasErrors('category')}"  th:errors="*{category}">Category error</td>
+        </tr>
+        <table class="center">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Count</th>
+            </tr>
+            <th:block th:each="order, stat:${product.orders}">
+                <tr>
+            <td><input type="text" th:field="*{orders[__${stat.index}__].name}"/></td>
+            <td><input type="text"  th:field="*{orders[__${stat.index}__].description}"/></td>
+            <td><input  type="text" th:field="*{orders[__${stat.index}__].count}"/></td>
+                </tr>
+            </th:block>
+
+        </table>
+    </table>
+    <div class="center">
+        <input class="button" type="submit" value="Edit">
+        <input class="button" type="reset" value="Reset">
+    </div>
+
+</form>
+</body>
+</html>

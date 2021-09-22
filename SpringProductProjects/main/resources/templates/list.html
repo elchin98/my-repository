@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Date</th>
+    </tr>
+    <th:block th:each="product:${products}">
+        <tr>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.category}"></td>
+            <td th:text="${#temporals.format(product.updatedAt,'dd-MM-yyyy HH:mm:ss')}"></td>
+            <td><a th:href="@{'/' + ${product.id}}" type="button" class="btn btn-success">edit</a></td>
+            <td><a th:href="@{'/soft/delete/' + ${product.id}}" type="button" class="btn btn-danger">delete</a></td>
+
+        </tr>
+    </th:block>
+</table>
+    <a th:href="@{'/'}" type="button" class="btn btn-info"> Add</a>
+</div>
+</body>
+</html>

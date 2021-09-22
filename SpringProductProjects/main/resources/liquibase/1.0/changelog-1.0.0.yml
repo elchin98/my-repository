@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-book-table
+      author: Elchin Abbasov
+      changes:
+        - createTable:
+            tableName: test
+            columns:
+              column:
+                name: id
+                type: int

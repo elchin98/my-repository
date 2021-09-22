@@ -1,0 +1,46 @@
+server:
+  port: 8082
+spring:
+  thymeleaf:
+    enabled: true
+    mode: "HTML5"
+    prefix: "classpath:templates/"
+    suffix: ".html"
+    encoding: "UTF-8"
+  datasource:
+    username: root
+    password: 1234
+    url: jdbc:mysql://localhost:3306/product
+    jpa:
+      show-sql: true
+      properties:
+        hibernate:
+          show-sql: true
+          format-sql: true
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml
+  #  jpa:
+  #    properties:
+  #      hibernate:
+  #        dialect: org.hibernate.dialect.MySQL8Dialect
+
+
+logging:
+  level:
+    root: info
+    com.developia.mvcproject: debug
+
+
+#
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
+#        type:
+#          descriptor:
+#            sql:
+#              BasicBinder: TRACE
+
+test:
+  hello: "Hello World From yaml file"
